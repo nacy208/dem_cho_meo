@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đếm Thú Cưng - Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main role="main">
+
+    <!-- MENU -->
+    <section id="screen-menu" class="screen active">
+      <h1>🐾 GAME ĐẾM THÚ CƯNG</h1>
+      <p class="subtitle">Người vs AI · 1 phút 30 giây</p>
+      <div class="vs-row">
+        <div class="avatar blue">NGƯỜI</div>
+        <span class="vs-text">VS</span>
+        <div class="avatar green">AI</div>
+      </div>
+      <div id="menu-score" class="score-display hidden"></div>
+      <button id="btn-start" class="btn btn-green" type="button">BẮT ĐẦU CHƠI</button>
+      <p class="hint">Đếm tổng số chó 🐕 và mèo 🐈 trong ảnh</p>
+    </section>
+
+    <!-- LOADING -->
+    <section id="screen-loading" class="screen">
+      <div class="loading-box">
+        <div class="spinner"></div>
+        <p id="loading-text" aria-live="polite">Đang tải...</p>
+        <p class="loading-sub" id="loading-sub"></p>
+      </div>
+    </section>
+
+    <!-- PLAYING -->
+    <section id="screen-playing" class="screen screen--stretch">
+      <!-- Header: round info + timer -->
+      <div class="play-header">
+        <div id="round-info" class="round-info"></div>
+        <div id="timer-display" class="timer">01:30</div>
+      </div>
+
+      <figure class="image-frame">
+        <img id="game-image" src="" alt="Ảnh chứa chó và mèo cần đếm" crossorigin="anonymous" />
+      </figure>
+
+      <p class="question">Có bao nhiêu con vật trong ảnh?</p>
+
+      <div class="input-row">
+        <div class="avatar small blue">BẠN</div>
+        <label for="player-input" class="sr-only">Nhập số con vật</label>
+        <input id="player-input" type="number" min="0" max="99"
+               placeholder="?" inputmode="numeric" autocomplete="off" />
+        <div class="avatar small green">AI</div>
+      </div>
+      <button id="btn-confirm" class="btn btn-blue" type="button">XÁC NHẬN</button>
+
+      <!-- Overlay kết quả vòng (hiện 2.5s rồi tự đóng) -->
+      <div id="round-overlay" class="round-overlay hidden">
+        <p id="ov-correct" class="ov-correct"></p>
+        <p id="ov-ai-detail" class="ov-detail"></p>
+        <div class="ov-cards">
+          <div id="ov-card-player" class="ov-card">
+            <span class="ov-label">BẠN</span>
+            <span id="ov-player" class="ov-val"></span>
+          </div>
+          <div id="ov-card-ai" class="ov-card">
+            <span class="ov-label">AI</span>
+            <span id="ov-ai" class="ov-val"></span>
+          </div>
+        </div>
+        <p id="ov-score" class="ov-score"></p>
+      </div>
+    </section>
+
+    <!-- GAME OVER -->
+    <section id="screen-gameover" class="screen">
+      <h1>⏱️ Hết Giờ!</h1>
+      <p id="go-verdict" class="go-verdict"></p>
+      <div class="go-scores">
+        <p id="go-score" class="go-score-player"></p>
+        <p id="go-ai-score" class="go-score-ai"></p>
+      </div>
+      <p id="go-rounds" class="hint"></p>
+      <button id="btn-play-again" class="btn btn-green" type="button">CHƠI LẠI</button>
+    </section>
+
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>

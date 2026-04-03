@@ -1,0 +1,7 @@
+flask
+flask-cors
+inference[yolov8]
+supervision
+opencv-python
+Pillow
+numpy

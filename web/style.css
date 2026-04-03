@@ -1,0 +1,257 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #4682b4;
+  --blue-dark: #3267a0;
+  --green: #3cb371;
+  --green-dark: #2e9e5e;
+  --yellow: #f0c040;
+  --red: #dc5050;
+  --bg: #f0f4f8;
+  --surface: #fff;
+  --text: #222;
+  --muted: #888;
+  --radius: 14px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  background: var(--bg);
+  display: flex; justify-content: center; align-items: center;
+  height: 100dvh; overflow: hidden; line-height: 1.5;
+}
+main {
+  width: 100%; height: 100%;
+  display: flex; justify-content: center; align-items: center;
+  padding: 12px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ── Screen ── */
+.screen {
+  display: none; flex-direction: column; align-items: center;
+  gap: clamp(6px, 1.2vh, 14px);
+  width: 100%; max-width: 560px;
+  max-height: calc(100dvh - 24px);
+  padding: clamp(14px, 2.5vh, 28px) 24px;
+  background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow);
+  overflow: hidden;
+  animation: fadeIn 0.25s ease;
+}
+.screen.active { display: flex; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Typography ── */
+h1 { font-size: clamp(1.4rem, 3.5vh, 1.9rem); color: var(--blue); text-align: center; }
+.subtitle { color: var(--muted); font-size: clamp(0.85rem, 1.5vh, 1rem); }
+.hint { color: #aaa; font-size: clamp(0.75rem, 1.3vh, 0.88rem); text-align: center; }
+.question { font-size: clamp(0.95rem, 2vh, 1.15rem); color: var(--text); font-weight: 600; }
+
+/* ── VS row ── */
+.vs-row { display: flex; align-items: center; gap: 24px; margin: 0; }
+.vs-text { font-size: clamp(1.4rem, 3vh, 2rem); font-weight: bold; color: var(--red); }
+.avatar {
+  width: clamp(64px, 9vh, 88px); height: clamp(64px, 9vh, 88px); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; font-size: clamp(0.78rem, 1.4vh, 0.95rem); color: #fff; text-align: center;
+}
+.avatar.blue  { background: var(--blue); }
+.avatar.green { background: var(--green); border-radius: var(--radius); }
+.avatar.small { width: clamp(46px, 6vh, 58px); height: clamp(46px, 6vh, 58px); font-size: 0.82rem; }
+
+/* ── Mode cards (menu) ── */
+.mode-title { font-weight: 700; color: var(--text); font-size: 1rem; margin-top: 4px; }
+.mode-cards { display: flex; gap: 14px; width: 100%; }
+.mode-card {
+  flex: 1; position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 20px 12px; border: 2px solid #dde3ea; border-radius: var(--radius);
+  background: #f8fafc; cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  font-family: inherit;
+}
+.mode-card:hover { border-color: var(--blue); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(70,130,180,0.18); }
+.mode-card--ai   { border-color: var(--green); background: #f0faf4; }
+.mode-card--ai:hover { border-color: var(--green-dark); box-shadow: 0 6px 20px rgba(60,179,113,0.2); }
+.mode-icon  { font-size: 2.2rem; }
+.mode-name  { font-weight: 700; font-size: 1rem; color: var(--text); }
+.mode-desc  { font-size: 0.78rem; color: var(--muted); text-align: center; line-height: 1.4; }
+.mode-badge-new {
+  position: absolute; top: -10px; right: -10px;
+  background: var(--red); color: #fff;
+  font-size: 0.65rem; font-weight: 800; padding: 2px 7px;
+  border-radius: 20px; letter-spacing: 0.5px;
+}
+
+/* ── Mode tag (playing screen) ── */
+.mode-tag {
+  font-size: 0.8rem; font-weight: 700; padding: 4px 14px;
+  border-radius: 20px; letter-spacing: 0.3px;
+}
+.mode-tag--classic  { background: #e8f0fb; color: var(--blue); }
+.mode-tag--ai       { background: #e0f7ec; color: var(--green-dark); }
+
+/* ── Ground truth hint ── */
+.gt-hint {
+  font-size: 0.82rem; color: var(--green-dark); background: #e0f7ec;
+  padding: 5px 14px; border-radius: 8px; font-weight: 600;
+}
+.gt-banner {
+  font-size: 0.85rem; font-weight: 700; color: #fff;
+  background: var(--green); padding: 6px 16px; border-radius: 20px;
+  text-align: center;
+}
+
+/* ── Buttons ── */
+.btn {
+  padding: clamp(9px, 1.5vh, 13px) 40px; border: none; border-radius: var(--radius);
+  font-size: clamp(0.9rem, 1.8vh, 1.05rem); font-weight: bold; color: #fff; cursor: pointer;
+  transition: background 0.2s, transform 0.1s, opacity 0.2s;
+  flex-shrink: 0;
+}
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-blue  { background: var(--blue); }
+.btn-blue:hover:not(:disabled)  { background: var(--blue-dark); }
+.btn-green { background: var(--green); }
+.btn-green:hover:not(:disabled) { background: var(--green-dark); }
+.btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+/* ── Score display ── */
+.score-display {
+  font-size: 1rem; color: #333;
+  background: #f0f4f8; padding: 8px 20px; border-radius: 8px;
+}
+.hidden { display: none !important; }
+
+/* ── Loading ── */
+.loading-box { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.spinner {
+  width: 54px; height: 54px;
+  border: 6px solid #e0e0e0; border-top-color: var(--blue);
+  border-radius: 50%; animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+#loading-text { font-size: 1.25rem; color: var(--blue); font-weight: bold; }
+.loading-sub  { color: #aaa; font-size: 0.9rem; }
+
+/* ── Playing ── */
+.round-info {
+  font-size: 0.85rem; color: #888; background: #f5f5f5;
+  padding: 4px 16px; border-radius: 8px; width: 100%; text-align: center;
+  flex-shrink: 0;
+}
+.image-frame {
+  width: 100%;
+  flex: 1 1 0; min-height: 0;
+  border: 3px solid #ddd; border-radius: 10px;
+  overflow: hidden; background: #eee;
+  display: flex; justify-content: center; align-items: center;
+}
+.image-frame img, .image-frame canvas {
+  max-width: 100%; max-height: 100%; width: 100%; height: 100%;
+  display: block; object-fit: contain;
+}
+.input-row { display: flex; align-items: center; gap: 16px; }
+#player-input {
+  width: 100px; height: 56px; font-size: 1.8rem; text-align: center;
+  border: 2px solid var(--blue); border-radius: 10px; outline: none;
+}
+#player-input:focus { border-color: var(--blue-dark); box-shadow: 0 0 0 3px rgba(70,130,180,0.2); }
+#player-input.input-error { border-color: var(--red); animation: shake 0.3s ease; }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* ── Result ── */
+.correct-answer { font-size: clamp(1.1rem, 2.2vh, 1.35rem); font-weight: bold; color: var(--text); flex-shrink: 0; }
+.animal-detail  { color: #888; font-size: clamp(0.78rem, 1.4vh, 0.92rem); flex-shrink: 0; }
+.result-cards   { display: flex; gap: 14px; width: 100%; }
+.result-card {
+  flex: 1; padding: 16px; border-radius: var(--radius);
+  background: var(--red); display: flex; flex-direction: column;
+  align-items: center; gap: 6px;
+}
+.result-card.correct { background: var(--green); }
+.result-card.close   { background: var(--yellow); }
+.result-card.wrong   { background: var(--red); }
+.card-label  { color: #fff; font-size: 0.82rem; font-weight: bold; }
+.card-answer { color: #fff; font-size: 1.2rem; font-weight: bold; }
+.result-message { font-size: 1.1rem; color: var(--blue); font-weight: 600; }
+.total-score    { font-size: 0.92rem; color: #666; }
+
+/* screen--stretch: playing & result dùng toàn bộ chiều cao còn lại cho image */
+.screen--stretch {
+  height: calc(100dvh - 24px);
+}
+@media (max-width: 480px) {
+  h1 { font-size: 1.45rem; }
+  .avatar { width: 68px; height: 68px; font-size: 0.82rem; }
+  .avatar.small { width: 48px; height: 48px; }
+  .mode-cards { gap: 10px; }
+  .mode-card { padding: 14px 8px; }
+  .btn { padding: 11px 28px; font-size: 0.95rem; }
+  #player-input { width: 80px; height: 48px; font-size: 1.5rem; }
+}
+
+/* ── Play header (round info + timer) ── */
+.play-header {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; gap: 8px; flex-shrink: 0;
+}
+
+/* ── Timer ── */
+.timer {
+  font-size: clamp(1.3rem, 3vh, 1.7rem); font-weight: 800;
+  color: var(--blue); background: #e8f0fb;
+  padding: 4px 14px; border-radius: 10px;
+  font-variant-numeric: tabular-nums; letter-spacing: 1px;
+  flex-shrink: 0; transition: background 0.3s, color 0.3s;
+}
+.timer--warn   { background: #fff4cc; color: #b07800; }
+.timer--danger { background: #fde8e8; color: var(--red); animation: pulse 0.6s ease infinite alternate; }
+@keyframes pulse { from { opacity: 1; } to { opacity: 0.6; } }
+
+/* ── Round overlay ── */
+.round-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.72);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; border-radius: var(--radius);
+  padding: 24px; z-index: 10;
+  animation: fadeIn 0.2s ease;
+}
+.ov-correct { font-size: 1.3rem; font-weight: 800; color: #fff; }
+.ov-detail  { font-size: 0.85rem; color: #ccc; }
+.ov-cards   { display: flex; gap: 14px; width: 100%; max-width: 320px; }
+.ov-card {
+  flex: 1; padding: 12px 8px; border-radius: 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  background: var(--red);
+}
+.ov-card.correct { background: var(--green); }
+.ov-card.close   { background: var(--yellow); }
+.ov-card.wrong   { background: var(--red); }
+.ov-label { color: #fff; font-size: 0.75rem; font-weight: 700; }
+.ov-val   { color: #fff; font-size: 1rem; font-weight: 700; }
+.ov-score { color: #fff; font-size: 0.9rem; font-weight: 600; }
+
+/* screen--stretch cần position relative cho overlay */
+.screen--stretch { position: relative; }
+
+/* ── Game Over ── */
+.go-verdict      { font-size: clamp(1.4rem, 3.5vh, 1.8rem); font-weight: 800; color: var(--blue); }
+.go-scores       { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.go-score-player { font-size: 1.2rem; font-weight: 700; color: var(--blue); }
+.go-score-ai     { font-size: 1.2rem; font-weight: 700; color: var(--green); }
