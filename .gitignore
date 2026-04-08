@@ -11,13 +11,14 @@ venv/
 .vscode/
 
 # Game - tự sinh khi chạy, không cần commit
-sprite_cache/
 generated/
 
 # Dữ liệu training/crop - nặng, không cần cho web game
 train/
 crop/
-anh_test/
+
+# Chỉ ignore anh_test gốc, KHÔNG ignore web/anh_test
+/anh_test/
 
 # Node
 node_modules/
