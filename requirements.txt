@@ -5,3 +5,4 @@ supervision
 opencv-python
 Pillow
 numpy
+gunicorn

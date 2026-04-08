@@ -1,3 +1,4 @@
+# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -5,4 +6,19 @@ __pycache__/
 .venv/
 venv/
 *.egg-info/
+
+# IDE
 .vscode/
+
+# Game - tự sinh khi chạy, không cần commit
+sprite_cache/
+generated/
+
+# Dữ liệu training/crop - nặng, không cần cho web game
+train/
+crop/
+anh_test/
+
+# Node
+node_modules/
+.next/

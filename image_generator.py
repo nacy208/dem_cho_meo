@@ -17,7 +17,7 @@ from pathlib import Path
 
 # ── Thư mục ──────────────────────────────────────────────────────────────────
 BASE_DIR      = Path(__file__).parent
-SOURCE_DIR    = BASE_DIR / "anh_test"          # ảnh nguồn để crop thú
+SOURCE_DIR    = BASE_DIR / "train"             # ảnh nguồn để crop thú
 BG_DIR        = BASE_DIR / "backgrounds"       # ảnh nền (tự tạo nếu thiếu)
 CACHE_DIR     = BASE_DIR / "sprite_cache"      # lưu sprite đã crop
 GENERATED_DIR = BASE_DIR / "generated"         # ảnh đã sinh ra

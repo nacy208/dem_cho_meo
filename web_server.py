@@ -192,7 +192,8 @@ def build_cache():
 
 
 if __name__ == "__main__":
-    print("Server chạy tại http://localhost:5000")
+    port = int(os.environ.get("PORT", 5000))
+    print(f"Server chạy tại http://localhost:{port}")
     # Pre-load sprite pool khi khởi động
     threading.Thread(target=get_sprite_pool, daemon=True).start()
-    app.run(port=5000, debug=False, threaded=True)
+    app.run(host="0.0.0.0", port=port, debug=False, threaded=True)
